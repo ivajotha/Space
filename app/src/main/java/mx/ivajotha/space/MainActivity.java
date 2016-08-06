@@ -12,24 +12,34 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Date;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import mx.ivajotha.space.data.ApodService;
 import mx.ivajotha.space.helper.Data;
 import mx.ivajotha.space.model.Apod;
+import mx.ivajotha.space.model.MarsPhotos;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView dateSingle;
+   /* private TextView dateSingle;
     private TextView explanationSingle;
     private TextView titleSingle;
     private ImageView urlImgSingle;
+  */
+    @BindView(R.id.dateSingle) TextView dateSingle;
+    @BindView(R.id.explanationSingle) TextView explanationSingle;
+    @BindView(R.id.titleSingle) TextView titleSingle;
+    @BindView(R.id.imageSingle) ImageView urlImgSingle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
 
         dateSingle = (TextView) findViewById(R.id.dateSingle);
         explanationSingle = (TextView) findViewById(R.id.explanationSingle);
@@ -42,26 +52,29 @@ public class MainActivity extends AppCompatActivity {
         //Declare variable for response Apod
         //Metodos de ApodService
         //Call<Apod> callApodService = apodService.getTodayApod();
+
         String apiKey = "5Njm32H3YhmhIkWBJxNpXAReRHJdoXLi4hD4pBvw";
-        Call<Apod> callApodService = apodService.getTodayApodWithQuery(apiKey);
+        //Recuerden hacer Call<MarsRoverResponse> para obtener la respuesta deseada
+        //Call<Apod> callApodService = apodService.getTodayApodWithQuery(apiKey);
+        Call<MarsPhotos> callApodService = apodService.getMarsPhoto(apiKey);
 
 
         //Callback de Apod
-        callApodService.enqueue(new Callback<Apod>() {
+        callApodService.enqueue(new Callback<MarsPhotos>() {
 
             @Override
-            public void onResponse(Call<Apod> call, Response<Apod> response) {
+            public void onResponse(Call<MarsPhotos> call, Response<MarsPhotos> response) {
                 //Log.d("APOD", response.body().getTitle());
-                dateSingle.setText(response.body().getDate());
-                explanationSingle.setText(response.body().getExplanation());
-                titleSingle.setText(response.body().getTitle());
-                String urlImg = response.body().getUrl();
-
-                Picasso.with(getApplicationContext()).load(urlImg).into(urlImgSingle);
+                //dateSingle.setText(response.body().getDate());
+                //explanationSingle.setText(response.body().getExplanation());
+                //explanationSingle.setText(response.body().getExplanation());
+                //titleSingle.setText(response.body().getTitle());
+                //String urlImg = response.body().getUrl();
+                //Picasso.with(getApplicationContext()).load(urlImg).into(urlImgSingle);
             }
 
             @Override
-            public void onFailure(Call<Apod> call, Throwable t) {
+            public void onFailure(Call<MarsPhotos> call, Throwable t) {
 
             }
         });
