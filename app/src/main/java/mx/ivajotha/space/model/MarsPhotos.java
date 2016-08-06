@@ -5,7 +5,7 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import mx.ivajotha.space.data.Photo;
+import mx.ivajotha.space.model.Photo;
 
 //@Generated("org.jsonschema2pojo")
 public class MarsPhotos {

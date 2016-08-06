@@ -1,4 +1,4 @@
-package mx.ivajotha.space.data;
+package mx.ivajotha.space.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
