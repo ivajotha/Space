@@ -53,15 +53,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
         final NasaApodAdapter nasaApodAdapter = new NasaApodAdapter();
-        nasaApodAdapter.setOnItemClickListener(new NasaApodAdapter.OnItemClickListener() {
+
+        nasaApodAdapter.setOnItemClickListener(new NasaApodAdapter.OnItemClickListener(){
+
             @Override
-            public void onItemClick(Photo photo) {
-                Log.d("DATA",photo.getImgSrc());
+            public void onItemClick(Photo potho) {
+                Log.d("DATA", potho.getImgSrc());
                 Toast.makeText(getApplicationContext(), "HOLA!", Toast.LENGTH_SHORT).show();
             }
         });

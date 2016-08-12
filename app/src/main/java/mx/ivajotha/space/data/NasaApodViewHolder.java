@@ -18,23 +18,22 @@ import mx.ivajotha.space.R;
  */
 public class NasaApodViewHolder extends RecyclerView.ViewHolder{
 
+    //private NasaApodAdapter.OnItemClickListener onItemClickListener;
     private NasaApodAdapter.OnItemClickListener onItemClickListener;
     private Photo photo;
 
+    @BindView(R.id.item_apod_img)
+    //ImageView itemApod_img;
+    SimpleDraweeView itemApod_img;
 
     @BindView(R.id.item_apod_text)
     TextView itemApod_text;
-
-    @BindView(R.id.item_apod_img)
-    //ImageView itemApod_img;
-            SimpleDraweeView itemApod_img;
 
 
     public NasaApodViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this,itemView);
     }
-
 
     public void setItemClick(Photo photo, NasaApodAdapter.OnItemClickListener onItemListener)
     {
@@ -43,6 +42,7 @@ public class NasaApodViewHolder extends RecyclerView.ViewHolder{
     }
 
     @OnClick(R.id.item_apod_img)
+
     public void onViewClick(View view)
     {
         if(onItemClickListener != null)

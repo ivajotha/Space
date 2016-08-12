@@ -92,11 +92,9 @@ public class Photo {
     }
 
     /**
-     * 
-     * @param imgSrc
-     *     The img_src
+     *
      */
-    public void setImgSrc(String imgSrc) {
+    public void setImgSrc() {
         this.imgSrc = imgSrc;
     }
 

@@ -21,7 +21,8 @@ import mx.ivajotha.space.model.Apod;
 public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
 
     private List<Photo> marsPhoto;
-    private OnItemClickListener onItemListener;
+    //private OnItemClickListener onItemClickListener;
+    private OnItemClickListener onItemClickListener;
 
     public NasaApodAdapter(){}
 
@@ -29,6 +30,13 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
         this.marsPhoto = photo;
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(Photo potho);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
     //Cual va hacer el VIEW que se va inflar
     @Override
@@ -54,10 +62,7 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
         holder.itemApod_img.setImageURI(photo.getImgSrc());
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
-        this.onItemListener = onItemClickListener;
-    }
-
+    
     public void setMarsPhoto(List<Photo> photos){
         this.marsPhoto = photos;
     }
@@ -71,12 +76,10 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
 
     }
 
-   /* public void setOnItemClickListener() {
+
+    /*public void setPhotos(List<Photo> photos) {
+        this.marsPhoto = photos;
     }
     */
-
-    public interface OnItemClickListener {
-        void onItemClick(Photo potho);
-    }
 
 }
