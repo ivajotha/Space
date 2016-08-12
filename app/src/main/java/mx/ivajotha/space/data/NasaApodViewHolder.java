@@ -1,6 +1,7 @@
 package mx.ivajotha.space.data;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,21 +26,25 @@ public class NasaApodViewHolder extends RecyclerView.ViewHolder{
     @BindView(R.id.item_apod_text)
     TextView itemApod_text;
 
-    private NasaApodAdapter.OnItemClickListener onItemClickListener;
+    private NasaApodAdapter.OnItemClickListener onItemListener;
     private Photo photo;
 
     public NasaApodViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this,itemView);
     }
-    public void setItemClick(Photo photo, NasaApodAdapter.OnItemClickListener onItemClickListener){
+
+    public void setItemClick(Photo photo, NasaApodAdapter.OnItemClickListener onItemListener){
         this.photo=photo;
-        this.onItemClickListener = onItemClickListener;
+        this.onItemListener = onItemListener;
     }
+
     @OnClick(R.id.item_apod_img)
     public void  onViewClick(View view){
-        if(onItemClickListener != null){
-            onItemClickListener.onItemClick(photo);
+        if(onItemListener != null){
+            onItemListener.onItemClick(photo);
+        }else{
+            Log.d("RES:NULL",photo.getImgSrc());
         }
     }
 

@@ -21,24 +21,24 @@ import mx.ivajotha.space.model.Apod;
  */
 public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
 
-    private List<Photo> marsPhoto;
+    private List<Photo> marsPhotos;
     private OnItemClickListener onItemClickListener;
 
-    public NasaApodAdapter(){}
+    //public NasaApodAdapter(){}
+
+    public NasaApodAdapter()
+    {
+        super();
+    }
 
     public NasaApodAdapter(List<Photo> apods){
-        this.marsPhoto = apods;
+        this.marsPhotos = apods;
     }
-
-    /*public  NasaApodAdapter(MarsPhotos marsPhotos){
-        this.marsPhoto=marsPhotos.getPhotos();
-    }
-    */
 
     //Cual va hacer el VIEW que se va inflar
     @Override
     public NasaApodViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new NasaApodViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_viewhoder, parent , false));
+        return new NasaApodViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.nasa_apod_items, parent , false));
         //Version Extensa de New NasaApodView....
         //View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_viewhoder,parent,false);
         //NasaApodViewHolder nasaApodViewHolder = new NasaApodViewHolder(v);
@@ -47,10 +47,12 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
 
     @Override
     public void onBindViewHolder(NasaApodViewHolder holder, int position) {
-        Photo photo = marsPhoto.get(position); //Obtener el objeto dependiendo de la posicion
-        holder.itemApod_text.setText(photo.getCamera().getName());
+        Photo photo = marsPhotos.get(position); //Obtener el objeto dependiendo de la posicion
+
         holder.itemApod_img.setImageURI(photo.getImgSrc());
-        holder.setItemClick(photo,onItemClickListener);
+        holder.itemApod_text.setText(photo.getCamera().getFullName());
+
+        holder.setItemClick(photo, onItemClickListener);
 
         //holder.itemApod_img.setImageURI(Uri.parse(photo.getImgSrc()));
         //Picasso.with(getApplicationContext()).load(urlImg).into(urlImgSingle);
@@ -66,19 +68,19 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
     }
 
     public void setMarsPhoto(List<Photo> photos){
-        this.marsPhoto = photos;
+        this.marsPhotos = photos;
     }
-
 
     //Controla Cuantos Items vamos a mostrar
     @Override
     public int getItemCount() {
         //return 0;
-        return marsPhoto != null? marsPhoto.size():0;
+        return marsPhotos != null? marsPhotos.size():0;
 
     }
 
-    public interface OnItemClickListener {
+    public interface OnItemClickListener
+    {
         void onItemClick(Photo photo);
     }
 
