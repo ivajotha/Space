@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mx.ivajotha.space.R;
+import mx.ivajotha.space.model.MarsPhotos;
 import mx.ivajotha.space.model.Photo;
 import mx.ivajotha.space.model.Apod;
 
@@ -21,22 +22,18 @@ import mx.ivajotha.space.model.Apod;
 public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
 
     private List<Photo> marsPhoto;
-    //private OnItemClickListener onItemClickListener;
     private OnItemClickListener onItemClickListener;
 
     public NasaApodAdapter(){}
 
-    public NasaApodAdapter(List<Photo> photo){
-        this.marsPhoto = photo;
+    public NasaApodAdapter(List<Photo> apods){
+        this.marsPhoto = apods;
     }
 
-    public interface OnItemClickListener {
-        void onItemClick(Photo potho);
+    /*public  NasaApodAdapter(MarsPhotos marsPhotos){
+        this.marsPhoto=marsPhotos.getPhotos();
     }
-
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
+    */
 
     //Cual va hacer el VIEW que se va inflar
     @Override
@@ -52,6 +49,8 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
     public void onBindViewHolder(NasaApodViewHolder holder, int position) {
         Photo photo = marsPhoto.get(position); //Obtener el objeto dependiendo de la posicion
         holder.itemApod_text.setText(photo.getCamera().getName());
+        holder.itemApod_img.setImageURI(photo.getImgSrc());
+        holder.setItemClick(photo,onItemClickListener);
 
         //holder.itemApod_img.setImageURI(Uri.parse(photo.getImgSrc()));
         //Picasso.with(getApplicationContext()).load(urlImg).into(urlImgSingle);
@@ -59,10 +58,13 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
                 .load(photo.getImgSrc())
                 .into(holder.itemApod_img);
         */
-        holder.itemApod_img.setImageURI(photo.getImgSrc());
+
     }
 
-    
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     public void setMarsPhoto(List<Photo> photos){
         this.marsPhoto = photos;
     }
@@ -76,10 +78,8 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
 
     }
 
-
-    /*public void setPhotos(List<Photo> photos) {
-        this.marsPhoto = photos;
+    public interface OnItemClickListener {
+        void onItemClick(Photo photo);
     }
-    */
 
 }

@@ -58,13 +58,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager);
 
         final NasaApodAdapter nasaApodAdapter = new NasaApodAdapter();
-
         nasaApodAdapter.setOnItemClickListener(new NasaApodAdapter.OnItemClickListener(){
 
             @Override
             public void onItemClick(Photo potho) {
-                Log.d("DATA", potho.getImgSrc());
-                Toast.makeText(getApplicationContext(), "HOLA!", Toast.LENGTH_SHORT).show();
+                Log.d("DATA__", potho.getImgSrc());
+                Toast.makeText(getApplicationContext(),potho.getImgSrc(),Toast.LENGTH_SHORT).show();
             }
         });
 
