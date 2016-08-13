@@ -1,6 +1,9 @@
 package mx.ivajotha.space;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +17,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +28,8 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -64,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
 
             @Override

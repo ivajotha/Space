@@ -1,9 +1,13 @@
 package mx.ivajotha.space.fragments;
 
+import android.content.ClipData;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -31,7 +35,6 @@ public class OnlyDayFragment extends Fragment{
          private TextView titleSingle;
          private ImageView urlImgSingle;
     */
-
 
     @BindView(R.id.dateSingle)
     TextView dateSingle;
@@ -92,6 +95,25 @@ public class OnlyDayFragment extends Fragment{
             public void onFailure(Call<Apod> call, Throwable t) {
 
             }
+
+            //public void onCreateOptionsMenu(Menu menu)
+            /*
+            public boolean onOptionsItemSelected(MenuItem item){
+                switch (item.getItemId()){
+                    case R.id.share_today_apod:
+                        shareText("Diplomado UNAM"+ urlImgSingle);
+                        default:
+                            return super.onOptionsItemSelected(Item);
+                }
+            }
+           */
+            private void shareText(String text){
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("Text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, text);
+                startActivity(Intent.createChooser(shareIntent, "Compartir"));
+            }
+
         });
 
 
