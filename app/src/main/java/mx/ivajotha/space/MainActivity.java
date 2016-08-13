@@ -32,6 +32,7 @@ import butterknife.ButterKnife;
 import mx.ivajotha.space.data.ApodService;
 import mx.ivajotha.space.data.NasaApodAdapter;
 import mx.ivajotha.space.fragments.ListingFragment;
+import mx.ivajotha.space.fragments.OnlyDayFragment;
 import mx.ivajotha.space.model.Photo;
 import mx.ivajotha.space.helper.Data;
 import mx.ivajotha.space.model.Apod;
@@ -73,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.mars_apod_item:
                         //getSupportFragmentManager marca error por la version
                         getFragmentManager().beginTransaction().replace(R.id.main_container,new ListingFragment()).commit();
+                        return true;
+
+                    case R.id.mars_rover_item:
+                        //getFragmentManager().beginTransaction().replace(R.id.main_container,new ListingFragment()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new OnlyDayFragment()).commit();
                         return true;
                 }
                 return false;
