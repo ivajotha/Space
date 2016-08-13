@@ -3,6 +3,8 @@ package mx.ivajotha.space;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mx.ivajotha.space.data.ApodService;
 import mx.ivajotha.space.data.NasaApodAdapter;
+import mx.ivajotha.space.fragments.ListingFragment;
 import mx.ivajotha.space.model.Photo;
 import mx.ivajotha.space.helper.Data;
 import mx.ivajotha.space.model.Apod;
@@ -54,11 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listing_navigation_activity);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+
+        //final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
 
@@ -67,7 +71,10 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.closeDrawers();
                 switch (item.getItemId()){
                     case R.id.mars_apod_item:
-                        Snackbar.make(findViewById(android.R.id.content),"HOLA",Snackbar.LENGTH_SHORT).show();
+                        // ArticleFragment newFragment = new ArticleFragment();
+                        /*ListingFragment newFragment  = new ListingFragment();;
+                        transaction.replace(R.id.holder_fragment, newFragment)
+                        transaction.commit();*/
                         return true;
                 }
                 return false;
@@ -91,43 +98,9 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionbarDrawerToggle);
         actionbarDrawerToggle.syncState();
 
-        /*
-        //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
-        recyclerView.setLayoutManager(gridLayoutManager);
+    }
 
-        final NasaApodAdapter nasaApodAdapter = new NasaApodAdapter();
-        nasaApodAdapter.setOnItemClickListener(new NasaApodAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Photo photo) {
-                //Log.d("DATA__",photo.getImgSrc());
-                Toast.makeText(getApplicationContext(),photo.getImgSrc(),Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(getApplicationContext(),DetailsActivity.class);
-                //intent.putExtra("imagen",photo.getImgSrc());
-                //intent.putExtra("title",photo.getCamera().getFullName());
-                //startActivity(intent);
-            }
-        });
-
-        //Instance APO
-        ApodService apodService = Data.getInstance().create(ApodService.class);
-
-        String apiKey = "5Njm32H3YhmhIkWBJxNpXAReRHJdoXLi4hD4pBvw";
-        apodService.getMarsPhoto(apiKey).enqueue(new Callback<MarsPhotos>() {
-            @Override
-            public void onResponse(Call<MarsPhotos> call, Response<MarsPhotos> response) {
-                nasaApodAdapter.setMarsPhoto(response.body().getPhotos());
-                //recyclerView.setAdapter(new NasaApodAdapter(response.body().getPhotos()));
-                recyclerView.setAdapter(nasaApodAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<MarsPhotos> call, Throwable t) {
-
-            }
-        });
-
-        */
+    private void repleaceFragment() {
 
     }
 }
