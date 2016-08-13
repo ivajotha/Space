@@ -35,7 +35,7 @@ public class ListingFragment extends Fragment{
     @BindView(R.id.mars_rover_listing)
     RecyclerView recyclerView;
 
-    @Nullable
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listing_layout, container, false);
@@ -45,11 +45,15 @@ public class ListingFragment extends Fragment{
         return view;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.mars_rover_listing);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
@@ -86,4 +90,6 @@ public class ListingFragment extends Fragment{
         });
 
     }
+
+
 }

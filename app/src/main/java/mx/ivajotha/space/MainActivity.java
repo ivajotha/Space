@@ -71,10 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.closeDrawers();
                 switch (item.getItemId()){
                     case R.id.mars_apod_item:
-                        // ArticleFragment newFragment = new ArticleFragment();
-                        /*ListingFragment newFragment  = new ListingFragment();;
-                        transaction.replace(R.id.holder_fragment, newFragment)
-                        transaction.commit();*/
+                        //getSupportFragmentManager marca error por la version
+                        getFragmentManager().beginTransaction().replace(R.id.main_container,new ListingFragment()).commit();
                         return true;
                 }
                 return false;
@@ -100,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void repleaceFragment() {
+    /*private void repleaceFragment() {
 
     }
+    */
 }
