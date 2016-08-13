@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_app_ic"
+        android:src="@android:drawable/sym_def_app_icon"
+        android:layout_margin="10dp"
+        android:minWidth="56dp"
+        android:minHeight="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_margin="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HOLA" />
+
+</LinearLayout>
