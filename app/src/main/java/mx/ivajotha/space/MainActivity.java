@@ -1,51 +1,30 @@
 package mx.ivajotha.space;
 
-import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.view.menu.MenuView;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.drawee.view.SimpleDraweeView;
 
-import com.squareup.picasso.Picasso;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Date;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import mx.ivajotha.space.data.ApodService;
-import mx.ivajotha.space.data.NasaApodAdapter;
+
 import mx.ivajotha.space.fragments.ListingFragment;
 import mx.ivajotha.space.fragments.OnlyDayFragment;
-import mx.ivajotha.space.model.Photo;
-import mx.ivajotha.space.helper.Data;
-import mx.ivajotha.space.model.Apod;
-import mx.ivajotha.space.model.MarsPhotos;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     /*
@@ -90,6 +69,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+            @Override
+            public void onCompleted(JSONObject object, GraphResponse responce) {
+                try {
+                    SimpleDraweeView userImage = (SimpleDraweeView) findViewById(R.id.iv_app_ic);
+                    userImage.setImageURI("http://graph.facebook.com/" + object.getString("id") + "/picture?type=large");
+                    TextView userName = (TextView) findViewById(R.id.iv_app_nn);
+                    userName.setText(object.getString("name"));
+                    Log.d("name", object.getString("name"));
+                    Log.d("id", object.getString("id"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        request.executeAsync();
+
+
         ActionBarDrawerToggle actionbarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout ,toolbar,R.string.app_name, R.string.app_name){
             @Override
             public void onDrawerClosed(View drawerView)
@@ -109,8 +107,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*private void repleaceFragment() {
-
-    }
-    */
 }
