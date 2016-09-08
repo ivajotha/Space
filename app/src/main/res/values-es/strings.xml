@@ -3,4 +3,6 @@
     <string name="app_name">Space</string>
     <string name="facebook_app_id">1781510552067136</string>
     <string name="Logotipo">Logotipo</string>
+    <string name="ImageShareTitle">Imagen del día:</string>
+    <string name="AddFavorite">Agregar a favoritos</string>
 </resources>

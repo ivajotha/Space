@@ -4,13 +4,16 @@ import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -35,6 +38,7 @@ public class OnlyDayFragment extends Fragment{
          private TextView titleSingle;
          private ImageView urlImgSingle;
     */
+    private String urlImg_;
 
     @BindView(R.id.dateSingle)
     TextView dateSingle;
@@ -44,33 +48,15 @@ public class OnlyDayFragment extends Fragment{
     TextView titleSingle;
     @BindView(R.id.imageSingle)
     ImageView urlImgSingle;
+    @BindView(R.id.loadingData)
+    ProgressBar loadingData;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.onlyday_layout, container, false);
+        final View view = inflater.inflate(R.layout.onlyday_layout, container, false);
         ButterKnife.bind(this, view);
-
-        return view;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        /*
-        dateSingle = (TextView) findViewById(R.id.dateSingle);
-        explanationSingle = (TextView) findViewById(R.id.explanationSingle);
-        titleSingle = (TextView) findViewById(R.id.titleSingle);
-        urlImgSingle = (ImageView) findViewById(R.id.imageSingle);
-        */
 
         //set Instance Apo
         ApodService apodService = Data.getInstance().create(ApodService.class);
@@ -87,35 +73,58 @@ public class OnlyDayFragment extends Fragment{
                 explanationSingle.setText(response.body().getExplanation());
                 explanationSingle.setText(response.body().getExplanation());
                 titleSingle.setText(response.body().getTitle());
-                String urlImg = response.body().getUrl();
-                Picasso.with(getContext()).load(urlImg).into(urlImgSingle);
+                urlImg_ = response.body().getUrl();
+
+                Picasso.with(getContext()).load(urlImg_).into(urlImgSingle);
+
+                loadingData.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<Apod> call, Throwable t) {
 
             }
-
-            //public void onCreateOptionsMenu(Menu menu)
-            /*
-            public boolean onOptionsItemSelected(MenuItem item){
-                switch (item.getItemId()){
-                    case R.id.share_today_apod:
-                        shareText("Diplomado UNAM"+ urlImgSingle);
-                        default:
-                            return super.onOptionsItemSelected(Item);
-                }
-            }
-           */
-            private void shareText(String text){
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.setType("Text/plain");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, text);
-                startActivity(Intent.createChooser(shareIntent, "Compartir"));
-            }
-
         });
 
+        return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.share_today_apod:
+                Snackbar.make(getView(), "Menu share today", Snackbar.LENGTH_SHORT).show();
+                String TitleShare =  getResources().getString(R.string.ImageShareTitle);
+                shareText(TitleShare + " " + urlImg_);
+                return true;
+            case R.id.favorito:
+                String AddFavorite =  getResources().getString(R.string.AddFavorite);
+                Snackbar.make(getView(), AddFavorite, Snackbar.LENGTH_SHORT).show();
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.apod_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    private void shareText(String text) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, text);
+        startActivity(Intent.createChooser(shareIntent, "compartir"));
+    }
+
 }
