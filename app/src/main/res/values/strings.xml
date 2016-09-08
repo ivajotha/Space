@@ -4,4 +4,5 @@
     <string name="Logotipo">Logotipo</string>
     <string name="ImageShareTitle">Image Apod Today:</string>
     <string name="AddFavorite">Add favorite</string>
+    <string name="titleShare">Share</string>
 </resources>

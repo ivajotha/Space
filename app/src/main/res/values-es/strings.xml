@@ -5,4 +5,5 @@
     <string name="Logotipo">Logotipo</string>
     <string name="ImageShareTitle">Imagen del día:</string>
     <string name="AddFavorite">Agregar a favoritos</string>
+    <string name="titleShare">Compatir</string>
 </resources>

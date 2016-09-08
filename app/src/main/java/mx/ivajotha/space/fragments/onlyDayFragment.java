@@ -124,7 +124,9 @@ public class OnlyDayFragment extends Fragment{
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, text);
-        startActivity(Intent.createChooser(shareIntent, "compartir"));
+
+        String TitleShare =  getResources().getString(R.string.titleShare);
+        startActivity(Intent.createChooser(shareIntent, TitleShare));
     }
 
 }
