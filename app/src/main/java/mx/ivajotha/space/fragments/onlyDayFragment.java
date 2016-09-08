@@ -71,7 +71,6 @@ public class OnlyDayFragment extends Fragment{
                 //Log.d("APOD", response.body().getTitle());
                 dateSingle.setText(response.body().getDate());
                 explanationSingle.setText(response.body().getExplanation());
-                explanationSingle.setText(response.body().getExplanation());
                 titleSingle.setText(response.body().getTitle());
                 urlImg_ = response.body().getUrl();
 

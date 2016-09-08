@@ -51,7 +51,6 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
 
         holder.itemApod_img.setImageURI(photo.getImgSrc());
         holder.itemApod_text.setText(photo.getCamera().getFullName());
-
         holder.setItemClick(photo, onItemClickListener);
 
         //holder.itemApod_img.setImageURI(Uri.parse(photo.getImgSrc()));

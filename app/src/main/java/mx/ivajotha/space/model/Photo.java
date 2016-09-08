@@ -3,11 +3,13 @@ package mx.ivajotha.space.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 import mx.ivajotha.space.model.Camera;
 import mx.ivajotha.space.model.Rover;
 
 //@Generated("org.jsonschema2pojo")
-public class Photo {
+public class Photo{
 
     @SerializedName("id")
     //@Expose

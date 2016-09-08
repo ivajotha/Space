@@ -1,6 +1,7 @@
 package mx.ivajotha.space.fragments;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -13,10 +14,12 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import mx.ivajotha.space.DetailActivity;
 import mx.ivajotha.space.R;
 import mx.ivajotha.space.data.ApodService;
 import mx.ivajotha.space.data.NasaApodAdapter;
@@ -35,6 +38,8 @@ public class ListingFragment extends Fragment{
     @BindView(R.id.mars_rover_listing)
     RecyclerView recyclerView;
 
+    @BindView(R.id.loadingData)
+    ProgressBar loadingData;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,11 +69,14 @@ public class ListingFragment extends Fragment{
             @Override
             public void onItemClick(Photo photo) {
                 Log.d("DATA__",photo.getImgSrc());
-                //Toast.makeText(getApplicationContext(),photo.getImgSrc(),Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(getApplicationContext(),DetailsActivity.class);
-                //intent.putExtra("imagen",photo.getImgSrc());
-                //intent.putExtra("title",photo.getCamera().getFullName());
-                //startActivity(intent);
+                //Toast.makeText(getActivity(),photo.getImgSrc(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra("imagen",photo.getImgSrc());
+                intent.putExtra("title",photo.getCamera().getName());
+                intent.putExtra("desc",photo.getCamera().getFullName());
+                intent.putExtra("fecha",photo.getEarthDate());
+                startActivity(intent);
+
             }
         });
 
@@ -82,6 +90,7 @@ public class ListingFragment extends Fragment{
                 nasaApodAdapter.setMarsPhoto(response.body().getPhotos());
                 //recyclerView.setAdapter(new NasaApodAdapter(response.body().getPhotos()));
                 recyclerView.setAdapter(nasaApodAdapter);
+                loadingData.setVisibility(View.GONE);
             }
             @Override
             public void onFailure(Call<MarsPhotos> call, Throwable t) {
