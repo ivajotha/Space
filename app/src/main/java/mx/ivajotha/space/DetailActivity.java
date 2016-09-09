@@ -88,15 +88,5 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    private void shareText(String text){
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_TEXT, text);
-
-        String TitleShare =  getResources().getString(R.string.titleShare);
-        startActivity(Intent.createChooser(shareIntent, TitleShare));
-
-    }
-
 
 }

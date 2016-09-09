@@ -56,12 +56,14 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem item) {
                 drawerLayout.closeDrawers();
 
+                //
+
                 switch (item.getItemId()){
-                    case R.id.mars_apod_item:
+                    case R.id.mars_rover_item:
                         //getSupportFragmentManager marca error por la version
                         getFragmentManager().beginTransaction().replace(R.id.main_container,new ListingFragment()).commit();
                         break;
-                    case R.id.mars_rover_item:
+                    case R.id.mars_apod_item:
                         //getFragmentManager().beginTransaction().replace(R.id.main_container,new ListingFragment()).commit();
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new OnlyDayFragment()).commit();
                         break;
@@ -80,15 +82,22 @@ public class MainActivity extends AppCompatActivity {
         GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
             @Override
             public void onCompleted(JSONObject object, GraphResponse responce) {
-                try {
-                    SimpleDraweeView userImage = (SimpleDraweeView) findViewById(R.id.iv_app_ic);
-                    userImage.setImageURI("http://graph.facebook.com/" + object.getString("id") + "/picture?type=large");
-                    TextView userName = (TextView) findViewById(R.id.iv_app_nn);
-                    userName.setText(object.getString("name"));
-                    Log.d("name", object.getString("name"));
-                    Log.d("id", object.getString("id"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
+
+                if(object != null) {
+
+                    try {
+                        SimpleDraweeView userImage = (SimpleDraweeView) findViewById(R.id.iv_app_ic);
+                        userImage.setImageURI("http://graph.facebook.com/" + object.getString("id") + "/picture?type=large");
+                        TextView userName = (TextView) findViewById(R.id.iv_app_nn);
+                        userName.setText(object.getString("name"));
+                        Log.d("name", object.getString("name"));
+                        Log.d("id", object.getString("id"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }else{
+                    finish();
                 }
             }
         });
