@@ -2,6 +2,7 @@ package mx.ivajotha.space;
 
 import android.support.design.widget.NavigationView;
 
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -55,23 +56,23 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem item) {
                 drawerLayout.closeDrawers();
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new OnlyDayFragment()).addToBackStack(null).commit();
-
                 switch (item.getItemId()){
                     case R.id.mars_apod_item:
                         //getSupportFragmentManager marca error por la version
                         getFragmentManager().beginTransaction().replace(R.id.main_container,new ListingFragment()).commit();
-                        return true;
-
+                        break;
                     case R.id.mars_rover_item:
                         //getFragmentManager().beginTransaction().replace(R.id.main_container,new ListingFragment()).commit();
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new OnlyDayFragment()).commit();
-                        return true;
-
-                    default:
-                        return false;
+                        break;
+                    case R.id.favory_item:
+                        //getFragmentManager().beginTransaction().replace(R.id.main_container,new ListingFragment()).commit();
+                        //getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new OnlyDayFragment()).commit();
+                        Snackbar.make(findViewById(android.R.id.content),"Favorites",Snackbar.LENGTH_SHORT).show();
+                        break;
 
                 }
+                return false;
             }
         });
 

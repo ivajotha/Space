@@ -1,6 +1,7 @@
 package mx.ivajotha.space;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -23,9 +24,9 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.listing_toolbar)
     Toolbar toolbar;
 
-    /*@BindView(R.id.details_image)
+    @BindView(R.id.details_image)
     SimpleDraweeView detailsImage;
-    */
+
 
     @BindView(R.id.details_date)
     TextView detailsDate;
@@ -44,15 +45,23 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         Intent details = getIntent();
-        if (details != null){
+        if (details.getExtras() != null){
 
-            String title = String.valueOf(details.getExtras().getInt("title"));
+            detailsDate.setText(details.getExtras().getString("fecha"));
+            detailsTitle.setText(details.getExtras().getString("title"));
+            detailExtraInfo.setText(details.getExtras().getString("desc"));
+            detailsImage.setImageURI(details.getExtras().getString("imagen"));
 
-            detailsDate.setText(title);
 
             loadingData.setVisibility(View.GONE);
+        }else{
+            Snackbar.make(findViewById(android.R.id.content),"Favorites",Snackbar.LENGTH_SHORT).show();
+
         }
 
     }
@@ -60,17 +69,16 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.apod_menu,menu);
-        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.favoritos_menu,menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()){
-            case R.id.share_today_apod:
-                //Compartimos la url de la imagen seleccionada
-                shareText(urlImg_);
+            case R.id.addFavorites:
+                Snackbar.make(findViewById(android.R.id.content),"Favorites",Snackbar.LENGTH_SHORT).show();
                 return true;
             case android.R.id.home:
                 finish();
