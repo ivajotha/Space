@@ -5,4 +5,7 @@
     <string name="ImageShareTitle">Image Apod Today:</string>
     <string name="AddFavorite">Add favorite</string>
     <string name="titleShare">Share</string>
+    <string name="isFavorite">Already in your Favorites</string>
+    <string name="titleShareToday">Share Today Image</string>
+    <string name="notInternet">Ups , check if you have Internet connection</string>
 </resources>

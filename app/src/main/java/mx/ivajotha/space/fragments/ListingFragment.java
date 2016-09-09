@@ -1,6 +1,6 @@
 package mx.ivajotha.space.fragments;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,9 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-
-
-import java.io.Serializable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +29,7 @@ import retrofit2.Response;
 /**
  * Created by Alumno on 12/08/2016.
  */
+
 public class ListingFragment extends Fragment{
 
     @BindView(R.id.mars_rover_listing)

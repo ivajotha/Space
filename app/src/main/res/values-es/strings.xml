@@ -6,4 +6,7 @@
     <string name="ImageShareTitle">Imagen del día:</string>
     <string name="AddFavorite">Agregar a favoritos</string>
     <string name="titleShare">Compatir</string>
+    <string name="isFavorite">Ya esta en tus Favoritos</string>
+    <string name="titleShareToday">Compartir la Imagen de Hoy</string>
+    <string name="notInternet">Ups , comprueba si tiene conexión a Internet</string>
 </resources>

@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.mars_rover_item:
                         //getSupportFragmentManager marca error por la version
-                        getFragmentManager().beginTransaction().replace(R.id.main_container,new ListingFragment()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new ListingFragment()).commit();
                         break;
                     case R.id.mars_apod_item:
                         //getFragmentManager().beginTransaction().replace(R.id.main_container,new ListingFragment()).commit();

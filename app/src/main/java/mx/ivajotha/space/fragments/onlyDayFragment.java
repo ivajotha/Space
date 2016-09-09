@@ -99,7 +99,9 @@ public class OnlyDayFragment extends Fragment{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.share_today_apod:
-                Snackbar.make(getView(), "Menu share today", Snackbar.LENGTH_SHORT).show();
+                String titleShareToday =  getResources().getString(R.string.titleShareToday);
+                Snackbar.make(getView(), titleShareToday, Snackbar.LENGTH_SHORT).show();
+
                 String TitleShare =  getResources().getString(R.string.ImageShareTitle);
                 shareText(TitleShare + " " + urlImg_);
                 return true;
