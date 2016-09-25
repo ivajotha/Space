@@ -8,4 +8,8 @@
     <string name="isFavorite">Already in your Favorites</string>
     <string name="titleShareToday">Share Today Image</string>
     <string name="notInternet">Ups , check if you have Internet connection</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notFavorites">La lista de favoritos esta vacia</string>
 </resources>

@@ -31,7 +31,10 @@
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".DetailActivity" />
-        <activity android:name=".sql.MySqliteHelper"></activity>
+        <activity android:name=".sql.MySqliteHelper" />
+        <activity android:name=".data.FavoritosAdapter" />
+        <activity android:name=".data.FavoritosHolderView" />
+        <activity android:name=".DetailFavoriteActivity"></activity>
     </application>
 
 </manifest>

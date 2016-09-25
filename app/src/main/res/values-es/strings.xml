@@ -9,4 +9,5 @@
     <string name="isFavorite">Ya esta en tus Favoritos</string>
     <string name="titleShareToday">Compartir la Imagen de Hoy</string>
     <string name="notInternet">Ups , comprueba si tiene conexión a Internet</string>
+    <string name="notFavorites">La lista de favoritos esta vacia</string>
 </resources>
