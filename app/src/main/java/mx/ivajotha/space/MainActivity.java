@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import mx.ivajotha.space.fragments.FavoritesFragment;
 import mx.ivajotha.space.fragments.ListingFragment;
 import mx.ivajotha.space.fragments.OnlyDayFragment;
 
@@ -49,14 +50,13 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
+
         //final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
 
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 drawerLayout.closeDrawers();
-
-                //
 
                 switch (item.getItemId()){
                     case R.id.mars_rover_item:
@@ -68,9 +68,8 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new OnlyDayFragment()).commit();
                         break;
                     case R.id.favory_item:
-                        //getFragmentManager().beginTransaction().replace(R.id.main_container,new ListingFragment()).commit();
-                        //getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new OnlyDayFragment()).commit();
-                        Snackbar.make(findViewById(android.R.id.content),"Favorites",Snackbar.LENGTH_SHORT).show();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new FavoritesFragment()).commit();
+                        //Snackbar.make(findViewById(android.R.id.content),"Favorites",Snackbar.LENGTH_SHORT).show();
                         break;
 
                 }
@@ -90,8 +89,9 @@ public class MainActivity extends AppCompatActivity {
                         userImage.setImageURI("http://graph.facebook.com/" + object.getString("id") + "/picture?type=large");
                         TextView userName = (TextView) findViewById(R.id.iv_app_nn);
                         userName.setText(object.getString("name"));
-                        Log.d("name", object.getString("name"));
-                        Log.d("id", object.getString("id"));
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new OnlyDayFragment()).commit();
+                        //Log.d("name", object.getString("name"));
+                        //Log.d("id", object.getString("id"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

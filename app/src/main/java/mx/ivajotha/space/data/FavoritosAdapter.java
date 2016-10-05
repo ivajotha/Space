@@ -16,10 +16,10 @@ public class FavoritosAdapter extends RecyclerView.Adapter<FavoritosHolderView> 
     private OnItemClickListener onItemClickListener;
     private List<ModelFavoritos> misfavoritos;
 
-
-
-
-    public FavoritosAdapter(){}
+    public FavoritosAdapter()
+    {
+        super();
+    }
     public FavoritosAdapter(List<ModelFavoritos> favoritosList){
         this.misfavoritos = favoritosList;
     }
@@ -31,7 +31,7 @@ public class FavoritosAdapter extends RecyclerView.Adapter<FavoritosHolderView> 
 
     @Override
     public FavoritosHolderView onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new FavoritosHolderView(LayoutInflater.from(parent.getContext()).inflate(R.layout.nasa_apod_items,parent,false));
+        return new FavoritosHolderView(LayoutInflater.from(parent.getContext()).inflate(R.layout.favorito_items,parent,false));
         //return null;
 
     }
@@ -41,7 +41,7 @@ public class FavoritosAdapter extends RecyclerView.Adapter<FavoritosHolderView> 
         ModelFavoritos modelFavoritos = misfavoritos.get(position);
         holder.image_hvfav.setImageURI(modelFavoritos.mfav_url);
         holder.titulo_hvfav.setText(modelFavoritos.mfav_title);
-        holder.setItemFavClick(modelFavoritos, onItemClickListener);
+        //holder.setItemFavClick(modelFavoritos, onItemClickListener);
     }
 
     public interface OnItemClickListener{

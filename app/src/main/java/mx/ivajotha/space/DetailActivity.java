@@ -68,8 +68,8 @@ public class DetailActivity extends AppCompatActivity {
             detailsImage.setImageURI(details.getExtras().getString("imagen"));
 
             urlImg_ = details.getExtras().getString("imagen");
-
             loadingData.setVisibility(View.GONE);
+
         }else{
             String notInternet =  getResources().getString(R.string.notInternet);
             Snackbar.make(findViewById(android.R.id.content),notInternet,Snackbar.LENGTH_SHORT).show();
@@ -94,11 +94,14 @@ public class DetailActivity extends AppCompatActivity {
                 addFav(details);
                 return true;
             case R.id.share_today_apod:
+
                 String titleShareToday =  getResources().getString(R.string.titleShareToday);
                 Snackbar.make(findViewById(android.R.id.content), titleShareToday, Snackbar.LENGTH_SHORT).show();
-
                 String TitleShare =  getResources().getString(R.string.ImageShareTitle);
-                shareText(TitleShare + " " + urlImg_);
+                String appName =  getResources().getString(R.string.app_name);
+                String TitleAll = TitleShare + " (App " + appName +"): ";
+                shareText(TitleAll + " " + urlImg_);
+
                 return true;
             case android.R.id.home:
                 finish();
@@ -112,7 +115,6 @@ public class DetailActivity extends AppCompatActivity {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, text);
-
         String TitleShare =  getResources().getString(R.string.titleShare);
         startActivity(Intent.createChooser(shareIntent, TitleShare));
     }
@@ -120,14 +122,14 @@ public class DetailActivity extends AppCompatActivity {
     private void addFav(Intent details) {
         String fecha = details.getExtras().getString("fecha");
         String title = details.getExtras().getString("title");
-        String desc = details.getExtras().getString("desc");
+        //String desc = details.getExtras().getString("desc");
         String imagen = details.getExtras().getString("imagen");
 
-        String titleAll = title + "(" + desc + ")";
+        //String titleAll = title + "(" + desc + ")";
 
         //public ModelFavoritos (int id, String mfav_title, String mfav_date, String mfav_url)
 
-        ModelFavoritos modelfavoritos = new ModelFavoritos(0,titleAll,fecha,imagen);
+        ModelFavoritos modelfavoritos = new ModelFavoritos(0,title,fecha,imagen);
 
         Boolean isFav = dataSource.searchFav(modelfavoritos);
 
@@ -140,9 +142,6 @@ public class DetailActivity extends AppCompatActivity {
             Snackbar.make(findViewById(android.R.id.content),addFavorite,Snackbar.LENGTH_SHORT).show();
 
         }
-
-
-
     }
 
 

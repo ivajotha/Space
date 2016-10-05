@@ -12,14 +12,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mx.ivajotha.space.R;
-import mx.ivajotha.space.model.Favoritos;
 import mx.ivajotha.space.model.ModelFavoritos;
 
 public class FavoritosHolderView extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.item_apod_img)
+    @BindView(R.id.item_fav_img)
     SimpleDraweeView image_hvfav;
-    @BindView(R.id.item_apod_text)
+    @BindView(R.id.item_fav_title)
     TextView titulo_hvfav;
 
     private  FavoritosAdapter.OnItemClickListener onItemClickListener;
@@ -38,7 +37,7 @@ public class FavoritosHolderView extends RecyclerView.ViewHolder {
 
     }
 
-    @OnClick(R.id.item_apod_img)
+    @OnClick(R.id.item_fav_img)
     public void onViewClick(View view){
         if(onItemClickListener!=null){
             onItemClickListener.onItemClick(modelFav);

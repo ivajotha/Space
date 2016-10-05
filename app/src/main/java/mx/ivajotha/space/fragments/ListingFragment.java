@@ -42,6 +42,8 @@ public class ListingFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listing_layout, container, false);
         ButterKnife.bind(this, view);
+        String titleShareToday =  getResources().getString(R.string.titleMarsRover);
+        getActivity().setTitle(titleShareToday);
 
         //return super.onCreateView(inflater, container, savedInstanceState);
         return view;

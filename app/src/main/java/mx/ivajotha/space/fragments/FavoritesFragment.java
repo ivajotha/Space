@@ -98,6 +98,26 @@ public class FavoritesFragment extends Fragment {
             Snackbar.make(getView(),getResources().getText(R.string.notFavorites),Snackbar.LENGTH_SHORT).show();
         }
 
+        loadingData.setVisibility(View.GONE);
+        //Instance APO
+        /*ApodService apodService = Data.getInstance().create(ApodService.class);
+
+        String apiKey = "5Njm32H3YhmhIkWBJxNpXAReRHJdoXLi4hD4pBvw";
+        apodService.getMarsPhoto(apiKey).enqueue(new Callback<MarsPhotos>() {
+            @Override
+            public void onResponse(Call<MarsPhotos> call, Response<MarsPhotos> response) {
+                nasaApodAdapter.setMarsPhoto(response.body().getPhotos());
+                //recyclerView.setAdapter(new NasaApodAdapter(response.body().getPhotos()));
+                recyclerView.setAdapter(nasaApodAdapter);
+                loadingData.setVisibility(View.GONE);
+            }
+            @Override
+            public void onFailure(Call<MarsPhotos> call, Throwable t) {
+
+            }
+        });
+        */
+
     }
 
 
