@@ -13,5 +13,7 @@
     <string name="titleFavorites">Favorites</string>
     <string name="titleApodToday">Today Apod</string>
     <string name="titleMarsRover">Mars Rover Images</string>
+    <string name="textDeleteFav">¿To remove from Favorites?</string>
+    <string name="titleDialogDelete">Delete</string>
 
 </resources>

@@ -1,9 +1,9 @@
 package mx.ivajotha.space.data;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+
 import android.view.ViewGroup;
 
 import java.util.List;
@@ -29,8 +29,10 @@ public class FavoritosAdapter extends RecyclerView.Adapter<FavoritosHolderView> 
         this.onItemClickListener = onItemClickListener;
     }
 
+
     @Override
     public FavoritosHolderView onCreateViewHolder(ViewGroup parent, int viewType) {
+
         return new FavoritosHolderView(LayoutInflater.from(parent.getContext()).inflate(R.layout.favorito_items,parent,false));
         //return null;
 
@@ -41,7 +43,7 @@ public class FavoritosAdapter extends RecyclerView.Adapter<FavoritosHolderView> 
         ModelFavoritos modelFavoritos = misfavoritos.get(position);
         holder.image_hvfav.setImageURI(modelFavoritos.mfav_url);
         holder.titulo_hvfav.setText(modelFavoritos.mfav_title);
-        //holder.setItemFavClick(modelFavoritos, onItemClickListener);
+        holder.setItemFavClick(modelFavoritos, onItemClickListener);
     }
 
     public interface OnItemClickListener{

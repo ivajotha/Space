@@ -13,5 +13,7 @@
     <string name="titleFavorites">Favoritos</string>
     <string name="titleApodToday">Imagen APOD</string>
     <string name="titleMarsRover">Imágenes de Mars Rover</string>
+    <string name="textDeleteFav">¿Desea eliminar de favoritos?</string>
+    <string name="titleDialogDelete">Eliminar</string>
 
 </resources>
