@@ -9,7 +9,7 @@
         />
     <item
         android:id="@+id/favorito"
-        android:icon="@android:drawable/ic_input_add"
+        android:icon="@android:drawable/ic_menu_add"
         android:title="dos"
         app:showAsAction="always"
         />

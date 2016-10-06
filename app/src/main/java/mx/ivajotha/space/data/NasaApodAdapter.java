@@ -5,11 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import mx.ivajotha.space.R;
 import mx.ivajotha.space.model.MarsPhotos;
@@ -23,6 +26,8 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
 
     private List<Photo> marsPhotos;
     private OnItemClickListener onItemClickListener;
+
+    private int lastPosition = -1;
 
     //public NasaApodAdapter(){}
 
@@ -52,6 +57,8 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
         holder.itemApod_text.setText(photo.getCamera().getFullName());
         holder.setItemClick(photo, onItemClickListener);
 
+        setShowItem(holder.itemView, position);
+
         //holder.itemApod_img.setImageURI(Uri.parse(photo.getImgSrc()));
         //Picasso.with(getApplicationContext()).load(urlImg).into(urlImgSingle);
         /*Picasso.with(holder.itemApod_img.getContext())
@@ -80,6 +87,16 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
     public interface OnItemClickListener
     {
         void onItemClick(Photo photo);
+    }
+
+    private void setShowItem(View viewToAnimate, int position) {
+
+        if (position > lastPosition) {
+            ScaleAnimation anim = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            anim.setDuration(new Random().nextInt(501));
+            viewToAnimate.startAnimation(anim);
+            lastPosition = position;
+        }
     }
 
 }

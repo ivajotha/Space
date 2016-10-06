@@ -16,8 +16,8 @@
         android:padding="10dp">
 
         <com.facebook.drawee.view.SimpleDraweeView
-            android:layout_width="70sp"
-            android:layout_height="70sp"
+            android:layout_width="@dimen/sizePhotoFv"
+            android:layout_height="@dimen/sizePhotoFv"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginRight="@dimen/apod_title_padding"

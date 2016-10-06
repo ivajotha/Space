@@ -2,39 +2,26 @@ package mx.ivajotha.space.fragments;
 
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import mx.ivajotha.space.DetailActivity;
-import mx.ivajotha.space.DetailFavoriteActivity;
 import mx.ivajotha.space.R;
-import mx.ivajotha.space.data.ApodService;
 import mx.ivajotha.space.data.FavoritosAdapter;
-import mx.ivajotha.space.data.NasaApodAdapter;
-import mx.ivajotha.space.helper.Data;
-import mx.ivajotha.space.model.MarsPhotos;
 import mx.ivajotha.space.model.ModelFavoritos;
-import mx.ivajotha.space.model.Photo;
 import mx.ivajotha.space.sql.DataSource;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class FavoritesFragment extends Fragment {
@@ -46,8 +33,6 @@ public class FavoritesFragment extends Fragment {
     ProgressBar loadingData;
 
     private DataSource dataSource;
-
-
 
     public FavoritesFragment() {
         // Required empty public constructor
@@ -95,21 +80,9 @@ public class FavoritesFragment extends Fragment {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 
+                                    //favoritesFragment.
                                     dataSource.deleteFav(mFavoritos);
-
-
-/*                                    dataSource = new DataSource(getActivity());
-                                    List<ModelFavoritos> mFavoritosList = dataSource.getAllItems();
-                                    if (!mFavoritosList.isEmpty()){
-                                        favoritosAdapter.setFavoritos(mFavoritosList);
-                                        recyclerView.setAdapter(favoritosAdapter);
-                                    }else{
-                                        Snackbar.make(getView(),getResources().getText(R.string.notFavorites),Snackbar.LENGTH_SHORT).show();
-                                    }
-                                    loadingData.setVisibility(View.GONE);
-*/
-                                    Snackbar.make(getView(),getResources().getText(R.string.notFavorites),Snackbar.LENGTH_SHORT).show();
-
+                                    getFragmentManager().beginTransaction().replace(R.id.main_container,new FavoritesFragment()).commit();
 
                                 }
                             }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

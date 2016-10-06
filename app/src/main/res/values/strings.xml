@@ -5,15 +5,16 @@
     <string name="ImageShareTitle">Image Apod Today</string>
     <string name="AddFavorite">It was added to favorites</string>
     <string name="titleShare">Share</string>
-    <string name="isFavorite">Already exists in favorites</string>
+    <string name="isFavorite">Already exists in your favorites list</string>
     <string name="titleShareToday">Share Today Image</string>
     <string name="notInternet">Ups , check if you have Internet connection</string>
-    <string name="notFavorites">La lista de favoritos esta vacia</string>
+    <string name="notFavorites">Your List of Favorites esta empty</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="titleFavorites">Favorites</string>
     <string name="titleApodToday">Today Apod</string>
     <string name="titleMarsRover">Mars Rover Images</string>
-    <string name="textDeleteFav">¿To remove from Favorites?</string>
+    <string name="textDeleteFav">Do you want to remove from your Favorites list?</string>
     <string name="titleDialogDelete">Delete</string>
+    <string name="txtLogin">To enter, sign in with facebook</string>
 
 </resources>

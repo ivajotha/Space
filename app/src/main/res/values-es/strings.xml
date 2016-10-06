@@ -3,17 +3,18 @@
     <string name="app_name">Space</string>
     <string name="facebook_app_id">1781510552067136</string>
     <string name="Logotipo">Logotipo</string>
-    <string name="ImageShareTitle">Imagen del día</string>
+    <string name="ImageShareTitle">La imagen del día</string>
     <string name="AddFavorite">Se agregó a favoritos</string>
     <string name="titleShare">Compatir</string>
-    <string name="isFavorite">Ya existe en favoritos</string>
+    <string name="isFavorite">Ya existe en tu lista de Favoritos</string>
     <string name="titleShareToday">Compartir la Imagen de Hoy</string>
     <string name="notInternet">Ups , comprueba si tiene conexión a Internet</string>
-    <string name="notFavorites">La lista de favoritos esta vacia</string>
+    <string name="notFavorites">Tu lista de favoritos está vacía</string>
     <string name="titleFavorites">Favoritos</string>
     <string name="titleApodToday">Imagen APOD</string>
     <string name="titleMarsRover">Imágenes de Mars Rover</string>
-    <string name="textDeleteFav">¿Desea eliminar de favoritos?</string>
+    <string name="textDeleteFav">¿Desea eliminar de tu lista de Favoritos?</string>
     <string name="titleDialogDelete">Eliminar</string>
+    <string name="txtLogin">Para ingresar, inicia sesión con facebook</string>
 
 </resources>
