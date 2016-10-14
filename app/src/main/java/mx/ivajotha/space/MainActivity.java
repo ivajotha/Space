@@ -1,14 +1,15 @@
 package mx.ivajotha.space;
 
+import android.content.Intent;
+
 import android.support.design.widget.NavigationView;
 
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import org.json.JSONObject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import mx.ivajotha.space.Login.FBLoginActivity;
 import mx.ivajotha.space.fragments.FavoritesFragment;
 import mx.ivajotha.space.fragments.ListingFragment;
 import mx.ivajotha.space.fragments.OnlyDayFragment;
@@ -89,7 +91,8 @@ public class MainActivity extends AppCompatActivity {
                         userImage.setImageURI("http://graph.facebook.com/" + object.getString("id") + "/picture?type=large");
                         TextView userName = (TextView) findViewById(R.id.iv_app_nn);
                         userName.setText(object.getString("name"));
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new OnlyDayFragment()).commit();
+
+                        //getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new OnlyDayFragment()).commit();
                         //Log.d("name", object.getString("name"));
                         //Log.d("id", object.getString("id"));
                     } catch (JSONException e) {
@@ -97,7 +100,10 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }else{
-                    finish();
+
+                    Intent ListSong = new Intent(getApplicationContext(), FBLoginActivity.class);
+                    startActivity(ListSong);
+                    //finish();
                 }
             }
         });

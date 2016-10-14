@@ -1,7 +1,10 @@
 package mx.ivajotha.space.fragments;
 
 import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringDef;
@@ -66,53 +69,67 @@ public class OnlyDayFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
+
         dataSource = new DataSource(getActivity());
         final View view = inflater.inflate(R.layout.onlyday_layout, container, false);
         ButterKnife.bind(this, view);
+        return view;
+
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+
+
         String titleShareToday =  getResources().getString(R.string.ImageShareTitle);
         getActivity().setTitle(titleShareToday);
 
-
         //set Instance Apo
         ApodService apodService = Data.getInstance().create(ApodService.class);
-        //Metodos de ApodService
-        Call<Apod> callApodService = apodService.getTodayApod();
 
-        //Callback de Apod
-        callApodService.enqueue(new Callback<Apod>() {
+            //Metodos de ApodService
+            Call<Apod> callApodService = apodService.getTodayApod();
 
-            @Override
-            public void onResponse(Call<Apod> call, Response<Apod> response) {
-                typeMedia = response.body().getMediaType();
+            //Callback de Apod
+            callApodService.enqueue(new Callback<Apod>() {
 
-                dateSingle.setText(response.body().getDate());
+                //boolean isNet = isConnected();
+                @Override
+                public void onResponse(Call<Apod> call, Response<Apod> response) {
+                    typeMedia = response.body().getMediaType();
 
-                explanationSingle.setText(response.body().getExplanation());
-                titleSingle.setText(response.body().getTitle());
-                urlImg_ = response.body().getUrl();
+                    dateSingle.setText(response.body().getDate());
 
-                dateFav = response.body().getDate();
-                descFav = response.body().getExplanation();
-                titleFav = response.body().getTitle();
+                    explanationSingle.setText(response.body().getExplanation());
+                    titleSingle.setText(response.body().getTitle());
+                    urlImg_ = response.body().getUrl();
 
-                if (typeMedia.equals("video")){
-                    String idVideo = getVideoId(urlImg_);
-                    urlImg_ = "http://img.youtube.com/vi/"+idVideo+"/sddefault.jpg";
+                    dateFav = response.body().getDate();
+                    descFav = response.body().getExplanation();
+                    titleFav = response.body().getTitle();
+
+                    if (typeMedia.equals("video")) {
+                        String idVideo = getVideoId(urlImg_);
+                        urlImg_ = "http://img.youtube.com/vi/" + idVideo + "/sddefault.jpg";
+                    }
+
+                    Picasso.with(getContext())
+                            .load(urlImg_)
+                            .into(urlImgSingle);
+                    loadingData.setVisibility(View.GONE);
                 }
 
-                Picasso.with(getContext())
-                        .load(urlImg_)
-                        .into(urlImgSingle);
-                loadingData.setVisibility(View.GONE);
-            }
+                @Override
+                public void onFailure(Call<Apod> call, Throwable t) {
 
-            @Override
-            public void onFailure(Call<Apod> call, Throwable t) {
+                    String titleShareToday =  getResources().getString(R.string.notInternetMore);
+                    Snackbar.make(getView(), titleShareToday, Snackbar.LENGTH_SHORT).show();
+                    loadingData.setVisibility(View.GONE);
 
-            }
-        });
+                }
+            });
 
-        return view;
+
     }
 
     @Override
@@ -190,6 +207,24 @@ public class OnlyDayFragment extends Fragment{
             return matcher.group(1);
 
         return null;
+    }
+
+    //Cómo determinar si tienes conexión a Internet Fragment
+    private boolean isConnected() {
+
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+                getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo actNetInfo = connectivityManager.getActiveNetworkInfo();
+
+        //return (actNetInfo != null && actNetInfo.isConnected());
+        if (actNetInfo != null && actNetInfo.isConnected()) {
+            // fetch data
+            return true;
+        } else {
+            return false;
+            // display error
+        }
     }
 
 

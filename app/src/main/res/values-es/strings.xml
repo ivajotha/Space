@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Space</string>
+    <string name="app_name">AstronautApp</string>
     <string name="facebook_app_id">1781510552067136</string>
     <string name="Logotipo">Logotipo</string>
     <string name="ImageShareTitle">La imagen del día</string>
@@ -16,5 +16,6 @@
     <string name="textDeleteFav">¿Desea eliminar de tu lista de Favoritos?</string>
     <string name="titleDialogDelete">Eliminar</string>
     <string name="txtLogin">Para ingresar, inicia sesión con facebook</string>
+    <string name="notInternetMore">La información no se cargo, revisa  tu conexión a Internet o intentalo más tarde</string>
 
 </resources>

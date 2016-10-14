@@ -1,5 +1,6 @@
 package mx.ivajotha.space.fragments;
 
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -91,6 +92,10 @@ public class ListingFragment extends Fragment{
             }
             @Override
             public void onFailure(Call<MarsPhotos> call, Throwable t) {
+
+                String titleShareToday =  getResources().getString(R.string.notInternetMore);
+                Snackbar.make(getView(), titleShareToday, Snackbar.LENGTH_SHORT).show();
+                loadingData.setVisibility(View.GONE);
 
             }
         });

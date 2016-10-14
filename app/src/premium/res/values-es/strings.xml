@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Space</string>
+    <string name="app_name">AstronautApp</string>
     <string name="facebook_app_id">1781510552067136</string>
     <string name="Logotipo">Logotipo</string>
 </resources>

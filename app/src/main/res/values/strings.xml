@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Space</string>
+    <string name="app_name">AstronautApp</string>
     <string name="facebook_app_id">1781510552067136</string>
     <string name="Logotipo">Logotipo</string>
     <string name="ImageShareTitle">Image Apod Today</string>
@@ -16,5 +16,6 @@
     <string name="textDeleteFav">Do you want to remove from your Favorites list?</string>
     <string name="titleDialogDelete">Delete</string>
     <string name="txtLogin">To enter, sign in with facebook</string>
+    <string name="notInternetMore">Information not charge, check your Internet connection or try again later</string>
 
 </resources>

@@ -42,7 +42,9 @@ public class FBLoginActivity extends AppCompatActivity implements FacebookCallba
         loginButton.registerCallback(callbackManager,this);
 
         if (AccessToken.getCurrentAccessToken() != null){
-            startActivity(new Intent(this, MainActivity.class));
+            //startActivity(new Intent(this, MainActivity.class));
+            String errorLogin_ =  getResources().getString(R.string.notInternetMore);
+            Snackbar.make(findViewById(android.R.id.content), errorLogin_, Snackbar.LENGTH_SHORT).show();
             //Snackbar.make(findViewById(android.R.id.content),error.getMessage(), Snackbar.LENGTH_SHORT);
         }
     }
@@ -60,7 +62,8 @@ public class FBLoginActivity extends AppCompatActivity implements FacebookCallba
 
     @Override
     public void onError(FacebookException error) {
-        Snackbar.make(findViewById(android.R.id.content),error.getMessage(), Snackbar.LENGTH_SHORT).show();
+        String errorLogin =  getResources().getString(R.string.notInternet);
+        Snackbar.make(findViewById(android.R.id.content),errorLogin,Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
